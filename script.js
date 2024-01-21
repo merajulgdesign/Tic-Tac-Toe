@@ -3,6 +3,21 @@ let resetBtn = document.querySelector("#reset-btn")
 let newGameBtn = document.querySelector("#new-btn")
 let msgContainer = document.querySelector(".msg-container")
 let msg = document.querySelector("#msg")
+let palyer1 = document.querySelector("#player1");
+
+
+
+// let player = prompt("Enter 0 for Choose Player O and Enter 1 for Player X");
+let player = prompt("Enter Your name: ")
+palyer1.innerText = `First Turn for ${player}`;
+// let turnO;
+// if( player == 0){
+//     turnO = true;
+// }else if(player == 1){
+//     turnO = false;
+// }
+
+
 
 
 let turnO = true;//playerX, PlayerO
@@ -23,9 +38,12 @@ boxes.forEach((box) => {
     box.addEventListener("click",() =>{
         if(turnO){//PlayerO Turn
             box.innerText = "O";
+            box.style.color = '#00FFaa';
             turnO = false;
         }else{//PlayerX turn
             box.innerText = "X";
+            box.style.color = '#00FF00';
+
             turnO = true;
         }
         box.disabled = true;
@@ -52,6 +70,12 @@ const enabledBoxes = () => {
     }
  }
 const showWinner = (winner) => {
+    if(winner === "O"){
+        winner = player;
+    } else {
+        winner = `Computer`;
+    }
+
     msg.innerText = `Congratulations, winner is ${winner}`;
     msgContainer.classList.remove("hide");
     disabledBoxes();
